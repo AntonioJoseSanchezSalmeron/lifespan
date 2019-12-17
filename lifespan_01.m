@@ -44,6 +44,7 @@ for dia=1:size(dias,1)
                 end
             end
             
+            % First pipeline: sequence processing
             OpenCV_Engine.nTotalImagenes = size(imgs,1);
             sub = split(imgs(1,:),"_");
             camara = strcat(sub{1},"_");
@@ -53,6 +54,7 @@ for dia=1:size(dias,1)
             BufferedImage = OpenCV_Engine.clasificarPixeles();
             OpenCV_Engine.filtrar(BufferedImage);
             
+            % Second pipeline: image processing
             if (~esPrimerDia)
                 OpenCV_Engine.rutaRaizAnt = path_dia_ant_cond_placa;
                 OpenCV_Engine.procesar_fusionar(camara, esPrimerDia);
