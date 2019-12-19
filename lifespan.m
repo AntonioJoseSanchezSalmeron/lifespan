@@ -1,5 +1,6 @@
 % Experiment folder selection
-path = 'C:\lifespan\Lifespan18';
+currentFolder = pwd;
+path = strcat(currentFolder,'\Lifespan18');
 % path = uigetdir(path,'Select the experiment folder');
 path = strcat(path,'\');
 [dias, cond, placas] = read_folder_extructure(path);
