@@ -45,16 +45,24 @@ for dia=1:size(dias,1)
             imgs = [];
             for i=1:size(ar_imgs,1)
                 if contains(ar_imgs(i,:),'.cmpr')
-                    imgs = [imgs; ar_imgs(i,:)];
+                    sub = split(ar_imgs(i,:),"_");
+                    sub_sub = split(sub{2},".");
+                    num_image=str2num(sub_sub{1});
+                    if ( (num_image < 1) || (num_image > 30) )
+                        filename = strcat(path_dia_cond_placa, ar_imgs(i,:));
+                        delete(filename)
+                    else
+                        imgs = [imgs; ar_imgs(i,:)];
+                    end
                 end
             end
             
-            % Show first image
+            %% Show first image
             %filename = strcat(path_dia_cond_placa, imgs(1,:));
             %img = read_img(filename, width, height);
             %imshow(img);
             
-            % First pipeline: sequence processing
+            %% First pipeline: sequence processing
             OpenCV_Engine.nTotalImagenes = size(imgs,1);
             sub = split(imgs(1,:),"_");
             camara = strcat(sub{1},"_");
@@ -64,7 +72,7 @@ for dia=1:size(dias,1)
             BufferedImage = OpenCV_Engine.clasificarPixeles();
             OpenCV_Engine.filtrar(BufferedImage);
             
-            % Second pipeline: image processing
+            %% Second pipeline: image processing
             if (~esPrimerDia)
                 OpenCV_Engine.rutaRaizAnt = path_dia_ant_cond_placa;
                 OpenCV_Engine.procesar_fusionar(camara, esPrimerDia);
@@ -72,3 +80,4 @@ for dia=1:size(dias,1)
         end
     end
 end
+postproces;

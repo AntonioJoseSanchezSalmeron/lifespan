@@ -9,8 +9,12 @@ Exp18=1;
 % Exp13V1=5;
 % Exp13V2=6;
 % Exp18=7;
+
+currentFolder = pwd;
+path = strcat(currentFolder,'\Lifespan18\');
+
 Experiments = {
-    '\\192.168.1.181\Compartida\Lifespan18\'
+    path
 %     '/media/joan/08E651C0E651AF26/IMAGENS/Lifespan14 V1 PROC_7/'
 %     '/media/joan/08E651C0E651AF26/IMAGENS/Lifespan14 V2 PROC_7/'
 %     '/media/joan/08E651C0E651AF26/IMAGENS/Lifespan15 V1 PROC_7/'
