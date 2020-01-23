@@ -1,6 +1,24 @@
 clear
 clc
 
+%% OS detection
+currentFolder = pwd;
+if ismac
+    % Code to run on Mac platform
+    disp('It is Mac OS')
+elseif isunix
+    disp('It is Unix OS')
+    path = strcat(currentFolder,'/Lifespan18/');
+    slash='/';
+elseif ispc
+    disp('It is Windows OS')
+    path = strcat(currentFolder,'\Lifespan18\');
+    slash='\';
+else
+    disp('Platform not supported')
+end
+
+%% Experiment configuration
 Exp18=1;
 % Exp14V1=1;
 % Exp14V2=2;
@@ -9,9 +27,6 @@ Exp18=1;
 % Exp13V1=5;
 % Exp13V2=6;
 % Exp18=7;
-
-currentFolder = pwd;
-path = strcat(currentFolder,'\Lifespan18\');
 
 Experiments = {
     path
@@ -23,9 +38,10 @@ Experiments = {
 %     '/media/PC_RETS_NEURONALS/Lifespan13 V2/'
 %     '/media/PC_RETS_NEURONALS/Lifespan18/'
     } ;
-experiments= length(Experiments);
+experimentsNumber= length(Experiments);
 Exp=Exp18;
 
+% Define the data acquisiton days by experiment
 dies={
     [1 4 5 6 7 8 11 12 13 14 15 18 19 21 22 25 ]
 %     [1 4 5 6 7 8 11 12 13 14 15 18 19 21 22 25 26 27 28 29 ]
@@ -37,6 +53,7 @@ dies={
 %     [1 4 5 6 7 8 11 12 13 14 15 18 19 20 21 22 25 ]
     };
 
+% Define the conditions by experiment
 condicions= {
     ['A' 'B' 'C' 'D']
 %     ['A' 'B']
@@ -47,6 +64,8 @@ condicions= {
 %     ['A' 'B']
 %     ['A' 'B' 'C' 'D']
     };
+
+% Define the plates for each condition by experiment
 PLAQUES={
     [1 2 3 4 ]
 %     [1 2 3 4 5 6 7 8 9 10]
@@ -59,15 +78,16 @@ PLAQUES={
     };
 maxDay=max(max(cell2mat(dies)));
 maxPlates=max(max(cell2mat(PLAQUES)))*max(strlength(condicions(:)));
-manuals=zeros(maxDay,maxPlates,experiments);
+manuals=zeros(maxDay,maxPlates,experimentsNumber);
 %manual =zeros(maxDay,maxPlates,experiments);
-auto=zeros(maxDay,maxPlates,experiments);
+auto=zeros(maxDay,maxPlates,experimentsNumber);
 % xCond=[]; 
 % for i=1:length(plaques):length(condicions)*length(plaques)
 %     xCond=[xCond; i:(i+length(plaques)-1)];
 % end
 
-for iExp = 1:experiments
+%% READ XML FILES (IN THESE FILES ARE THE ALIVE WORMS CENTROIDS)
+for iExp = 1:experimentsNumber
     ExpCondicions = condicions{iExp};
     for cond = 1:length(ExpCondicions)
         for dia=dies{iExp}
@@ -75,9 +95,9 @@ for iExp = 1:experiments
             plaques=PLAQUES{iExp};
             for placa=plaques
 
-                % %%%%%%%% AUTOMATICS %%%%%%%%%%%%%
+                % %%%%%%%% READ THE AUTOMATIC WORM COUNT %%%%%%%%%%%%%
                 vius1=0;
-                filename1 = [ Experiments{iExp} 'dia_' int2str(dia) '\cond_' ExpCondicions(cond) '\placa_' int2str(placa) '\conteoAutomatic.xml'];
+                filename1 = [ Experiments{iExp} 'dia_' int2str(dia) slash 'cond_' ExpCondicions(cond) slash 'placa_' int2str(placa) slash 'conteoAutomatic.xml'];
                 if exist(filename1,'file') ==2 
                     % File exists.
                     archiu1=xmlread(filename1);
@@ -94,9 +114,9 @@ for iExp = 1:experiments
                      % File does not exist.
                 end
 
-                % %%%%%%% MANUALS %%%%%%%%%%%%%%%%
+                % %%%%%%% READ THE MANUAL WORM COUNT %%%%%%%%%%%%%%%%
                 vius2=0;
-                filename2=[Experiments{iExp} 'dia_' int2str(dia) '\cond_' ExpCondicions(cond) '\placa_' int2str(placa) '\conteoManual.xml'];
+                filename2=[Experiments{iExp} 'dia_' int2str(dia) slash 'cond_' ExpCondicions(cond) slash 'placa_' int2str(placa) slash 'conteoManual.xml'];
                 if exist(filename2, 'file') == 2
                     % File exists.
                     archiu2=xmlread(filename2);
@@ -113,7 +133,9 @@ for iExp = 1:experiments
                      % File does not exist.
                 end
 
+                % Worm manual count
                 manuals(dia,cond*length(plaques)-(length(plaques))+placa, iExp)=vius2;
+                % Worm automatic count
                 auto(dia,cond*length(plaques)-(length(plaques))+placa, iExp)=vius1;
             end
 
@@ -121,8 +143,8 @@ for iExp = 1:experiments
     end
 end
 
-%% Auto
-for iExp=1:experiments
+%% Automatic 
+for iExp=1:experimentsNumber
     ExpCondicions = condicions{iExp};
     plaques=PLAQUES{iExp};
     for iCP=1:length(ExpCondicions)*length(plaques)
@@ -136,10 +158,13 @@ for iExp=1:experiments
     end
 end
 
-%% Filtrat manual
-%manuals(manuals>13)=13;
+%% Manual filtered 
+% Manual counts at Biopolis Laboratory is not made on weekends, so sutarday and sunday counts
+% are the same than the friday count  
+% The technician counts worms from plates, he can forget some worm while reading manuals
+% For this reason  In order
 manual = manuals;
-for iExp=1:experiments
+for iExp=1:experimentsNumber
     ExpCondicions = condicions{iExp};
     plaques=PLAQUES{iExp};
     for iCP=1:length(ExpCondicions)*length(plaques)
@@ -155,10 +180,10 @@ for iExp=1:experiments
     end
 end
 
-%% POST PROCESS
+%% POST-PROCESS FILTER
 %dies=60;
 post=auto;
-for iExp=1:experiments
+for iExp=1:experimentsNumber
     
     ExpCondicions = condicions{iExp};
     plaques=PLAQUES{iExp};
@@ -167,7 +192,7 @@ for iExp=1:experiments
         post(idx,i,iExp)=manual(1,i,iExp);
     end
     
-    % INICI POST PROCESS
+    % START POST-PROCESS
     for i=1:length(ExpCondicions)*length(plaques)
         DIES=dies{iExp};
         for idia=2:DIES(length(DIES))    
@@ -195,27 +220,29 @@ for iExp=1:experiments
                 end
             end
         end
-    end % FI POST-PROCESS
+    end % ENDS POST-PROCESS
 end
 
-%% Analisis en desviacions dels errors per CONDICIO
-% Analisis Desviacio Tipica i Mija per dia
-% Censura
+%% Error deviation per CONDITION
+% Standard deviation and mean analysis per day
+
+% Evaluated conditions
 COND={
-    [1  2  3  4]
-    [5  6  7  8]
-    [9 10 11 12]
-    [13 14 15 16]};
+    [1  2  3  4]    % Plates  1, 2, 3, 4
+    [5  6  7  8]    % Plates  5, 6, 7, 8
+    [9 10 11 12]    % Plates  9,10,11,12
+    [13 14 15 16]}; % Plates 13,14,15,16
+
 mija=[]; mijaA=[]; mijaP=[];
 for iCond=1:size(COND,1) %experiments
-    % De la Poblacio                                 
-    [mija(:,iCond),  sigma(:,iCond)]               = desviacio_Estandart  (manual(:,COND{iCond},iExp));
-    % Dels Errors
-    [mijaA(:,iCond), sigmaA(:,iCond),textA(:,iCond)] = desviacio_Error_Total(auto(:,COND{iCond},iExp), manual(:,COND{iCond},iExp));
-    [mijaP(:,iCond), sigmaP(:,iCond),textP(:,iCond)] = desviacio_Error_Total(post(:,COND{iCond},iExp), manual(:,COND{iCond},iExp));
+    % From population                                 
+    [mija(:,iCond),  sigma(:,iCond)]               = standardDeviation  (manual(:,COND{iCond},iExp));
+    % From errors
+    [mijaA(:,iCond), sigmaA(:,iCond)] = totalErrorDeviation(auto(:,COND{iCond},iExp), manual(:,COND{iCond},iExp));
+    [mijaP(:,iCond), sigmaP(:,iCond)] = totalErrorDeviation(post(:,COND{iCond},iExp), manual(:,COND{iCond},iExp));
 end
 
-% Analisis Desviacio i Mija Total
+% TOTAL standard deviation and mean analysis
 error_Auto=[]; error_Post=[]; mijaSigmaAuto=[]; mijaSigmaPost=[];
 for iCond=1:size(COND,1) %experiments
     DIES=dies{iExp};
@@ -227,13 +254,14 @@ for iCond=1:size(COND,1) %experiments
     mijaSigmaPost(:,iCond)   = sqrt( (   sum((sigmaP(restriccionsDies,iCond).^2)  )/length(restriccionsDies))) *100;
 end
 
-
+% SURVIVAL per day and condition
 for iCond=1:size(COND,1)
     super_Auto(:,iCond) = sum(auto(:,COND{iCond},iExp),2) ./ sum(manual(1,COND{iCond},iExp),2);
     super_Post(:,iCond) = sum(post(:,COND{iCond},iExp),2) ./ sum(manual(1,COND{iCond},iExp),2);
 end
 
 
+%% SHOWS SURVIVAL CURVES with ERRORS
 for iCond=1:size(COND,1)
     figure
     hold on
