@@ -6,5 +6,5 @@ git clone https://github.com/AntonioJoseSanchezSalmeron/lifespan.git
 Run install.bat
 # download lifespan example (Lifespan18)
 
-# run Lifespan18 example in Matlab R2018b
+# Lifespan18 demo in Matlab R2018b
 Run lifespan.m macro 
