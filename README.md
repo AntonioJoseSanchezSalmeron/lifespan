@@ -3,3 +3,6 @@ Lifespan automation for C. elegans cultured in standard Petri plates is a challe
 # windows x64 installation
 Run install.bat
 # Download lifespan example (Lifespan18)
+
+# Run example (Lifespan18)
+Run macro lifespan.m in Matlab
