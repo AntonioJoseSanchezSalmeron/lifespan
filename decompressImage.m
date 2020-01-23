@@ -1,4 +1,5 @@
-function [imagen_rectangular] = descomprimir_circulo(imagen_circular, width,height)
+% cmpr extension is 
+function [Image] = decompressImage(compressedImage, width,height)
     
     r=height/2;  %972;
     y0=height/2; %972;
@@ -17,7 +18,7 @@ function [imagen_rectangular] = descomprimir_circulo(imagen_circular, width,heig
     end
     
     %imagen_rectangular=zeros(width,height);
-    for j=1:1:height
+    for j=1:1:(height-1)
         xs=floor(x0-abs(sqrt(r2-(r-j)^2)));
         cx=floor(abs(sqrt(r2 - (r-j)^2)));
         NUM=j*width;
@@ -25,12 +26,12 @@ function [imagen_rectangular] = descomprimir_circulo(imagen_circular, width,heig
         XN=NUM+xs;
         Xc=XN+2*cx;
 
-        imagen_rectangular(i1:XN-i1) = 255;
+        Image(i1:XN-i1) = 255;
         i1 = XN -1;
-        imagen_rectangular(i1:i1+Xc-XN) = imagen_circular(k2:k2+Xc-XN);
+        Image(i1:i1+Xc-XN) = compressedImage(k2:k2+Xc-XN);
         i1=i1+Xc-XN;
         k2=k2+Xc-XN;
-        imagen_rectangular(i1:N1-i1) = 255;
+        Image(i1:N1-i1) = 255;
         i1 = N1 - 1;
     end
     
