@@ -5,4 +5,4 @@ Run install.bat
 # Download lifespan example (Lifespan18)
 
 # Run example (Lifespan18)
-Run macro lifespan.m in Matlab
+Run lifespan.m macro in Matlab
