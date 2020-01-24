@@ -55,7 +55,7 @@ dies={
 
 % Define the conditions by experiment
 condicions= {
-    ['A' 'B' 'C' 'D']
+    ['A' 'B' 'C']
 %     ['A' 'B']
 %     ['A' 'B']
 %     ['A' 'B']
