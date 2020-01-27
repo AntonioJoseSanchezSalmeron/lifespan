@@ -3,6 +3,9 @@ currentFolder = pwd;
 if ismac
     % Code to run on Mac platform
     disp('It is Mac OS')
+    path = strcat(currentFolder,'/Lifespan18');
+    path = strcat(path,'/');
+    slash='/';    
 elseif isunix
     disp('It is Unix OS')
     path = strcat(currentFolder,'/Lifespan18');
