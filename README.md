@@ -18,7 +18,7 @@ Run ```install.bat```
 # Download lifespan example (Lifespan18):
 - [Lifespan18.zip](https://active-vision.ai2.upv.es/wp-content/uploads/2020/01/Lifespan18.zip)
 - Uncompress Lifespan18.zip
-- Move Lifespan18 folder into lifespan folder before running the demo
+- Move uncompressed Lifespan18 folder into lifespan folder before running the demo
 
 # Run Lifespan18 demo in Matlab:
 Run ```lifespan.m``` macro
