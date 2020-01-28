@@ -15,19 +15,20 @@ git clone https://github.com/AntonioJoseSanchezSalmeron/lifespan.git
 # Windows x64 installation:
 Run ```install.bat```
 
-# Download lifespan example (Lifespan18) and results
+# Download lifespan example (Lifespan18):
 - [Lifespan18.zip](https://active-vision.ai2.upv.es/wp-content/uploads/2020/01/Lifespan18.zip)
 - Uncompress Lifespan18.zip
-- Move Lifespan18 folder into lifespan folder
- 
+- Move Lifespan18 folder into lifespan folder before running the demo
+
 # Run Lifespan18 demo in Matlab:
 Run ```lifespan.m``` macro
 
 # Download Lifespan18 annotated results:
 - [Lifespan18_Results.zip](https://active-vision.ai2.upv.es/wp-content/uploads/2020/01/Lifespan18_Results.zip)
+- Results include the manual annotated alive C.elegans
 
 # Image adquisition system:
-- Images were captured by an [open hardware system](https://github.com/JCPuchalt/c-elegans_smartLight)
+- Images were captured by an [open hardware system](https://github.com/JCPuchalt/c-elegans_smartLight).
 
 # References:
 - Puchalt, J. C., Sánchez-Salmerón, A.-J., Martorell Guerola, P. & Genovés Martínez, S. "Active backlight for automatingvisual monitoring: An analysis of a lighting control technique for Caenorhabditis elegans cultured on standard Petri plates".PLOS ONE14, e0215548 (2019)
