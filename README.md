@@ -11,7 +11,10 @@ git clone https://github.com/AntonioJoseSanchezSalmeron/lifespan.git
 ```
 # windows x64 installation
 Run ```install.bat```
-# download lifespan example (Lifespan18)
+# download lifespan example (Lifespan18) and results
 
 # Lifespan18 demo in Matlab
 Run ```lifespan.m``` macro
+
+# references
+- Puchalt, J. C., Sánchez-Salmerón, A.-J., Martorell Guerola, P. & Genovés Martínez, S. Active backlight for automatingvisual monitoring: An analysis of a lighting control technique for Caenorhabditis elegans cultured on standard Petri plates.PLOS ONE14, e0215548 (2019)
