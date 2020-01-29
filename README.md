@@ -31,4 +31,4 @@ Run ```lifespan.m``` macro
 - Images were captured by an [open hardware system](https://github.com/JCPuchalt/c-elegans_smartLight).
 
 # References:
-- Puchalt, J. C., Sánchez-Salmerón, A.-J., Martorell Guerola, P. & Genovés Martínez, S. "Active backlight for automatingvisual monitoring: An analysis of a lighting control technique for Caenorhabditis elegans cultured on standard Petri plates".PLOS ONE14, e0215548 (2019)
+- Puchalt, J. C., Sánchez-Salmerón, A.-J., Martorell Guerola, P. & Genovés Martínez, S. "Active backlight for automating visual monitoring: An analysis of a lighting control technique for Caenorhabditis elegans cultured on standard Petri plates".PLOS ONE 14.4 (2019)
