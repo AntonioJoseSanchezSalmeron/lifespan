@@ -16,15 +16,15 @@ git clone https://github.com/AntonioJoseSanchezSalmeron/lifespan.git
 Run ```install.bat```
 
 # Download lifespan example (Lifespan18):
-- [Lifespan18.zip](https://active-vision.ai2.upv.es/wp-content/uploads/2020/01/Lifespan18.zip)
+- [Lifespan18.zip (8.53 GB)](https://active-vision.ai2.upv.es/wp-content/uploads/2020/01/Lifespan18.zip)
 - Uncompress Lifespan18.zip
-- Move uncompressed Lifespan18 folder into lifespan folder before running the demo
+- Move uncompressed Lifespan18 folder into lifespan folder before running the demo.
 
 # Run Lifespan18 demo in Matlab:
 Run ```lifespan.m``` macro
 
 # Download Lifespan18 annotated results:
-- [Lifespan18_Results.zip](https://active-vision.ai2.upv.es/wp-content/uploads/2020/01/Lifespan18_Results.zip)
+- [Lifespan18_Results.zip (0.17 GB)](https://active-vision.ai2.upv.es/wp-content/uploads/2020/01/Lifespan18_Results.zip)
 - Results include the manual annotated alive *C. elegans*
 
 # Image adquisition system:
