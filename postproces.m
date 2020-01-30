@@ -230,8 +230,7 @@ end
 COND={
     [1  2  3  4]    % Plates  1, 2, 3, 4
     [5  6  7  8]    % Plates  5, 6, 7, 8
-    [9 10 11 12]    % Plates  9,10,11,12
-    [13 14 15 16]}; % Plates 13,14,15,16
+    [9 10 11 12]};    % Plates  9,10,11,12
 
 mija=[]; mijaA=[]; mijaP=[];
 for iCond=1:size(COND,1) %experiments
