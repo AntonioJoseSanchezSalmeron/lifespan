@@ -13,19 +13,22 @@ git clone https://github.com/AntonioJoseSanchezSalmeron/lifespan.git
 ```
 
 # Windows x64 installation:
-Run ```install.bat```
+Run ```install.bat``` to configure properly library paths.
 
-# Download lifespan example (Lifespan18):
+# Download images dataset:
+This dataset includes all the images and the annotations for one assay (named Lifespan18). These images, saved in cmpr format, can be read by calling the function ```img = read_img(filename, width, height)```, which is included this repository (see ```read_img.m``` macro). The amount of alive *C. elegans* per plate is annotated in the "conteoManual.xml" files.
 - [Lifespan18.zip (8.53 GB)](https://active-vision.ai2.upv.es/wp-content/uploads/2020/01/Lifespan18.zip)
 - Uncompress Lifespan18.zip
-- Move uncompressed Lifespan18 folder into lifespan folder before running the demo.
+- Move uncompressed Lifespan18 folder into lifespan-mater folder before running the ```lifespan.m``` macro.
 
-# Run Lifespan18 demo in Matlab:
-Run ```lifespan.m``` macro. This macro will plot the final lifespan curves and will save intermediate results in each plate folder.
+# Run the automated lifespan demo in Matlab:
+Run ```lifespan.m``` macro. This macro will plot the final lifespan curves (one per condition) and will generate and save intermediate image processing results (in bmp and jpg formats). After running this macro, you can navigate in each Lifespan18 plate folder to explore results.
 
-# Download Lifespan18 annotated results:
+# Download demo results:
+In case you don't want to spent time generating the intermediate image processing results, instead you can download results.
 - [Lifespan18_Results.zip (0.17 GB)](https://active-vision.ai2.upv.es/wp-content/uploads/2020/01/Lifespan18_Results.zip)
-- Results include the manual annotated alive *C. elegans*
+- Uncompress Lifespan18_Results.zip
+- Move uncompressed Lifespan18_Results folder into lifespan-mater folder before running the ```postproces_Results.m``` macro.
 
 # Image adquisition system:
 - Images were captured by an [open hardware system](https://github.com/JCPuchalt/c-elegans_smartLight).
