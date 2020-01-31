@@ -75,11 +75,22 @@ for dia=1:size(dias,1)
                     contains(ar_imgs(i).name,'.bmp') || ...
                     contains(ar_imgs(i).name,'.jpg'))
                 	filename = strcat(path_dia_cond_placa, ar_imgs(i).name);
-                	%delete(filename)
-                    mkdir(path_dia_cond_placa_results);
-                    movefile(filename, path_dia_cond_placa_results);
+                	if ~(contains(ar_imgs(i).name,'conteoManual.xml'))
+                        delete(filename)
+                    end
+%                     mkdir(path_dia_cond_placa_results);
+%                     movefile(filename, path_dia_cond_placa_results);                  
                 end
-            end         
+            end
+%             ar_imgs=dir(path_dia_cond_placa_results);
+%             imgs = [];
+%             for i=1:size(ar_imgs,1)
+%                 if (contains(ar_imgs(i).name,'conteoManual.xml'))
+%                     filename = strcat(path_dia_cond_placa_results, ar_imgs(i).name);
+%                     filename_dst = strcat(path_dia_cond_placa, ar_imgs(i).name);
+%                     copyfile(filename,filename_dst);
+%                 end
+%             end             
         end
     end
 end
