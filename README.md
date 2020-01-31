@@ -21,7 +21,7 @@ Run ```install.bat```
 - Move uncompressed Lifespan18 folder into lifespan folder before running the demo.
 
 # Run Lifespan18 demo in Matlab:
-Run ```lifespan.m``` macro
+Run ```lifespan.m``` macro. This macro will plot the final lifespan curves and will save intermediate results in each plate folder.
 
 # Download Lifespan18 annotated results:
 - [Lifespan18_Results.zip (0.17 GB)](https://active-vision.ai2.upv.es/wp-content/uploads/2020/01/Lifespan18_Results.zip)
